@@ -2,22 +2,14 @@
 
 import os
 
-def create_files_for_test(no_files: int, name_list: str):
-    path_to_test_dir = os.path.join(os.getcwd(),'test')
-    ext = '.txt'
-    for i in range(no_files):
-        for name in name_list:
-            with open(os.path.join(path_to_test_dir,name+str(i)+ext),'w') as fp:
-                pass
-
-def create_files_for_test2(name_list: str):
+def create_files_for_test(name_list: str):
     path_to_test_dir = os.path.join(os.getcwd(),'test')
     ext = '.txt'
     for name in name_list:
         with open(os.path.join(path_to_test_dir,name+ext),'w') as fp:
             pass
 
-def rename_and_backup2(path: str, restore_from_backup: bool = False) -> list:
+def rename_and_backup(path: str, restore_from_backup: bool = False) -> list:
     """write list containing the names of the entries in the directory given by path to filenames_backup.txt"""
     
     restore_from_backup = get_input()
@@ -27,6 +19,7 @@ def rename_and_backup2(path: str, restore_from_backup: bool = False) -> list:
         name_dict = dict()
         
         old_names = os.listdir(path)
+        if "filenames_backup.txt" in old_names: old_names.remove("filenames_backup.txt") 
         new_names = list()
         for name in old_names:
             substring1, substring2 = name.split('_',1)
@@ -35,6 +28,7 @@ def rename_and_backup2(path: str, restore_from_backup: bool = False) -> list:
             else:
                 name_dict[substring1] = 1
             new_names.append(name.replace(substring2,'Sample'+str(name_dict[substring1])+'.txt'))
+        print("new names:")
         print(new_names)
         all_names = list(zip(old_names,new_names))
 
@@ -66,13 +60,12 @@ def get_input() -> bool:
             print('that was not "y" or "n"...')
             continue
 
-#%% Test the script
+#%% Create files for the test
 
 
 working_directory = os.getcwd()
 path_to_test_dir = os.path.join(os.getcwd(),'test')
-name_list = ['bolt_', 'doodad_', 'whirlygig_']
-name_list2 = ['bolt_cmvu3e',
+name_list = ['bolt_cmvu3e',
               'bolt_cddcb2az',
               'bolt_kveirbh',
               'doodad_pcawexfc',
@@ -84,16 +77,22 @@ name_list2 = ['bolt_cmvu3e',
               'whirlygig_bnejkw0',
               'whirlygig_rrmew',
               'whirlygig_vmecq3']
-no_files = 5
 
-# create_files_for_test(no_files, name_list)
-create_files_for_test2(name_list2)
+create_files_for_test(name_list)
+
+
+
+
+
+#%%
+
+path_to_test_dir = os.path.join(os.getcwd(),'test')
 
 print("List of directories and files before creation:")
 print(os.listdir(path_to_test_dir))
 print()
 
-all_names = rename_and_backup2(path_to_test_dir,False)
+all_names = rename_and_backup(path_to_test_dir,False)
 
 print("List of directories and files after creation:")
 print(os.listdir(path_to_test_dir))
@@ -102,6 +101,21 @@ print()
 
 
 #%%
+
+
+def remove_files_for_test():
+    path_to_test_dir = os.path.join(os.getcwd(),'test')
+    pass
+    # for file in os.listdir(path_to_test_dir):
+
+
+
+"""
+how to test that filenames can be renamed from backup?
+how to ignore the filenames_backup.txt file when creating the list of names in directory
+
+"""
+
 
 ## for each common thing before underscore
 ##      replace thing after underscore with
