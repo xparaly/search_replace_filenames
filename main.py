@@ -1,8 +1,11 @@
 #%%
+"""renames all files in a folder according to a user-defined pattern.  thats the goal.... currently is not a user-defined pattern.  would also like an interactive gui..."""
+
 
 import os
 
 def create_files_for_test(name_list: str):
+    """create files from a list of names, to test the script"""
     path_to_test_dir = os.path.join(os.getcwd(),'test')
     ext = '.txt'
     for name in name_list:
@@ -10,16 +13,16 @@ def create_files_for_test(name_list: str):
             pass
 
 def rename_and_backup(path: str, restore_from_backup: bool = False) -> list:
-    """write list containing the names of the entries in the directory given by path to filenames_backup.txt"""
+    """rename files in path and create backup of old filenames at path/filenames_backup.txt"""
     
     restore_from_backup = get_input()
 
-
     if restore_from_backup == False:
         name_dict = dict()
-        
         old_names = os.listdir(path)
-        if "filenames_backup.txt" in old_names: old_names.remove("filenames_backup.txt") 
+
+        if "filenames_backup.txt" in old_names: old_names.remove("filenames_backup.txt")
+
         new_names = list()
         for name in old_names:
             substring1, substring2 = name.split('_',1)
@@ -50,6 +53,7 @@ def rename_and_backup(path: str, restore_from_backup: bool = False) -> list:
 
 
 def get_input() -> bool:
+    """get user's choice of restoring filenames from backup or creating new filenames"""
     while (True):
         user_input = input("restore filenames from filenames_backup.txt? Enter y or n:")
         if user_input == 'y':
@@ -112,8 +116,7 @@ def remove_files_for_test():
 
 """
 how to test that filenames can be renamed from backup?
-how to ignore the filenames_backup.txt file when creating the list of names in directory
-
+how to remove old files?
 """
 
 
