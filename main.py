@@ -64,53 +64,59 @@ def get_input() -> bool:
             print('that was not "y" or "n"...')
             continue
 
-#%% Create files for the test
-
-
-working_directory = os.getcwd()
-path_to_test_dir = os.path.join(os.getcwd(),'test')
-name_list = ['bolt_cmvu3e',
-              'bolt_cddcb2az',
-              'bolt_kveirbh',
-              'doodad_pcawexfc',
-              'doodad_qpv9213',
-              'doodad_mbnqlgd37',
-              'doodad_mwgeg',
-              'whirlygig_vkbwbw',
-              'whirlygig_qkenfiv3',
-              'whirlygig_bnejkw0',
-              'whirlygig_rrmew',
-              'whirlygig_vmecq3']
-
-create_files_for_test(name_list)
+    def remove_files_for_test():
+        path_to_test_dir = os.path.join(os.getcwd(),'test')
+        pass
+        # for file in os.listdir(path_to_test_dir):
 
 
 
 
+#% Create files for the test
 
-#%%
+def main():
 
-path_to_test_dir = os.path.join(os.getcwd(),'test')
-
-print("List of directories and files before creation:")
-print(os.listdir(path_to_test_dir))
-print()
-
-all_names = rename_and_backup(path_to_test_dir,False)
-
-print("List of directories and files after creation:")
-print(os.listdir(path_to_test_dir))
-print()
-
-
-
-#%%
-
-
-def remove_files_for_test():
+    working_directory = os.getcwd()
     path_to_test_dir = os.path.join(os.getcwd(),'test')
-    pass
-    # for file in os.listdir(path_to_test_dir):
+    name_list = ['bolt_cmvu3e',
+                'bolt_cddcb2az',
+                'bolt_kveirbh',
+                'doodad_pcawexfc',
+                'doodad_qpv9213',
+                'doodad_mbnqlgd37',
+                'doodad_mwgeg',
+                'whirlygig_vkbwbw',
+                'whirlygig_qkenfiv3',
+                'whirlygig_bnejkw0',
+                'whirlygig_rrmew',
+                'whirlygig_vmecq3']
+
+    create_files_for_test(name_list)
+
+
+
+
+
+#%
+
+    path_to_test_dir = os.path.join(os.getcwd(),'test')
+
+    print("List of directories and files before creation:")
+    print(os.listdir(path_to_test_dir))
+    print()
+
+    all_names = rename_and_backup(path_to_test_dir,False)
+
+    print("List of directories and files after creation:")
+    print(os.listdir(path_to_test_dir))
+    print()
+
+
+
+ #%
+
+
+
 
 
 
@@ -145,3 +151,9 @@ how to remove old files?
 # bag2_Sample4.csv
 
 
+
+
+
+
+if __name__ == "__main__":
+    main()
